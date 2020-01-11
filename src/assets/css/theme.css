@@ -1,0 +1,6 @@
+/* Custom css should be typed here if needed */
+.demo_url_in_css {
+    background-image: url(../images/october.png);
+    @apply bg-contain;
+    color:red;
+}

@@ -1,0 +1,123 @@
+title = "Demonstration"
+url = "/"
+layout = "default"
+==
+<div class="sm:w-2/5 flex flex-col sm:items-start sm:text-left">
+    <h1 class="text-6xl text-center">TailwindCSS Boilerplate Theme</h1>
+    <h3 class="text-2xl text-center">This is not a theme, it's much more!</h3>
+
+    <p class="py-3">TailwindCSS Boilerplate theme <span class="font-bold">is not a theme</span>, it's a boilerplate to
+        create some awesome themes with all the developper's tools includes: TailwindCSS, Webpack, BrowserSync already
+        configured to
+        build with the OctoberCMS's directory structure, PostCSS with some the majors plugins, PurgeCSS, and all this
+        managed with NPM.</p>
+
+    <p class="py-3 font-bold italic">Have fun!</p>
+
+    <h3 class="text-xl font-bold">TailwindCSS/Webpack/PostCSS ready</h3>
+    <p class="py-3">TailwindCSS, Webpack and PostCSS is already installed and pre-configured to work together. Each
+        configuration file is pre-built but customizable.</p>
+    <p class="py-3">This boilerplate comes with webpack and fully <span class="color-red-300">customised</span> <span class="bg-gray-200 px-2 italic">webpack.config.js</span> file for OctoberCMS to manage all your assets: css,
+        javascript, images, fonts and also all your template files: <span class="font-bold">Webpack will walk through
+            all you directory and subdirectory</span> present in your theme folder to compile the .htm, .html and .txt
+        files to catch all the assets dependencies you may have added in them!</p>
+    <p class="py-3">PostCSS is the prepocessor of this boilerplate with the most used plugins. Feel free to add the plugins
+        you want into the <span class="bg-gray-200 px-2 italic">postcss.config.js</span></p>
+
+    <h3 class="text-xl font-bold">PurgeCSS & Minification</h3>
+    <p class="py-3">To ensure the optimization of your final theme, all unused CSS will be removed with PurgeCSS, and
+        all the JS and CSS files will be minified</p>
+
+    <h3 class="text-xl font-bold">Auto-injection of CSS/JS</h3>
+    <p class="py-3">All <span class="font-bold">the files presents in the <span class="bg-gray-200 px-2 italic">layouts</span></span> directory will <span class="font-bold">receive the
+            CSS/JS</span> due to the Webpack auto-injection and a special rule on this directory.</p>
+
+    <h3 class="text-xl font-bold">Auto-clean of previous build</h3>
+    <p class="py-3">This boilerplate uses <span class="bg-gray-200 px-2 italic">clean-webpack-plugin</span> to ensure
+        you don't have any useless files in your themes directory. Your files is cleaned on every build webpack makes.
+    </p>
+
+    <h1 class="text-6xl text-center">How to use</h1>
+    <h3 class="text-xl font-bold">.env file needed</h3>
+    <p class="py3">First of all: if it's not already the case, be sure to run <span class="bg-gray-200 px-2 italic">php
+            artisan october:env</span>. This toolkit uses <span class="bg-gray-200 px-2 italic">APP_URL</span> inside of
+        it to serve local server with BrowserSync and
+        to correctly sets the paths of the assets. Be sure that it's correctly defined.</p>
+
+    <h3 class="text-xl font-bold">NPM</h3>
+    <p class="py3">Again, this theme is not a theme, it's a toolkit, based on NPM. To use it, be sure to have <a href="https://github.com/nodejs/node">node</a> and <a href="https://github.com/npm/cli">npm</a> installed on
+        your machine.</p>
+    <p class="py3">Then, follow this quick steps:</p>
+    <ol class="list-decimal">
+        <li>After installation of this toolkit, rename the folder to what you want your theme's name to be.</li>
+        <li>Modify the theme.yaml from sourcecode or OctoberCMS's administration wit the theme's name, description,
+            author, and so on...</li>
+        <li>Run <span class="bg-gray-200 px-2 italic">npm install</span> from the theme directory to install
+            dependencies.</li>
+        <li>Run <span class="bg-gray-200 px-2 italic">npm run watch</span> to run the the development server with hot
+            reload.</li>
+        <li>Have fun!</li>
+    </ol>
+    <p class="py3">Be aware of the fact that every times you create a new file, you need to reload <span class="bg-gray-200 px-2 italic">npm run watch</span>.</p>
+
+    <h3 class="text-xl font-bold">Folder structure, where to put your code.</h3>
+    <p class="py-3">Due to the pre-built configuration, you need to ensure all the modifications you make stay in the
+        <span class="bg-gray-200 px-2 italic">src</span> directory. All directories, subdirectories and files will be
+        cleaned and recreated by webpack on the root of the the theme'sroot folder. Think of the <span class="bg-gray-200 px-2 italic">src</span> directory as <span class="font-bold">your <span class="bg-gray-200 px-2">root</span>
+            directory</span></p>
+    <p class="py-3">The defaults directories and files structure of this boilerplate are:</p>
+    <pre class="text-xs">
+/
+/node_modules/ (after npm install)
+/src/
+    /assets/
+        /css/
+            entry.css (loads TailwindCSS and inserts your custom css at the right place)
+            themes.css (your actual custom css)
+        /fonts/
+        /images/
+            october.png
+        /javascript/
+            app.js (your custom javascript, copied from October's demo theme)
+    /content/
+    /layouts/
+        /default.htm
+    /pages/
+        404.htm
+        error.htm
+        home.htm
+    /partials/
+        /site/
+            footer.htm
+            header.htm
+    index.js
+/package.json
+/postcss.config.js
+/README.md
+/tailwindcss.config.js
+/theme.yaml
+/webpack.config.js
+    </pre>
+    <p class="py-3">After webpack build, all the files in the src will be parsed and placed on the same structure from
+        the root folder.</p>
+    <h3 class="text-xl font-bold">How to handle images from HTML and CSS (and fonts)</h3>
+    <h5 class="text-l font-bold">From HTML:</h5>
+    <p class="py-3">Due to some webpack limitation, when you need to load file from the assets folder from the layouts,
+        pages or partials, you will need to inserts them with special syntax:</p>
+    <pre>&lt;img src=&lt;%&equals;require(&#34;./../images/october.png&#34;)%&gt; /&gt;</pre>
+    <p class="py-3">Will render the following image.</p>
+    <pre>&lt;img src="https://your-domain.test/themes/your-theme-name/images/october.png" /&gt;</pre>
+    <img src="http://october-builder.test/themes/tailwindcss-boilerplate/assets/images/october.png" class="w-10 h-10">
+    <p class="py-3">Be careful to call the relative path from the current compiled file: if you were in the <span class="bg-gray-200 px-2 italic">/partials/site/header.htm</span> file, this should have been
+        <span class="bg-gray-200 px-2 italic">./../../assets/october.png</span></p>
+    <h5 class="text-l font-bold">From CSS:</h5>
+    <p class="py-3">From the CSS files, just use the url() as you usually do, for fonts, or images:</p>
+    <pre>
+.demo_url_in_css {
+    background-image: url(../images/october.png);
+}
+    </pre>
+    <p class="py-3">Will render the following image. The same rules apply for CSS and HTML insert: use relative path
+        from the current CSS file to the images directory.</p>
+    <div class="demo_url_in_css w-10 h-10"></div>
+</div>

@@ -1,0 +1,54 @@
+description = "Default layout"
+==
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>October CMS - {{ this.page.title }}</title>
+    <meta name="description" content="{{ this.page.meta_description }}">
+    <meta name="title" content="{{ this.page.meta_title }}">
+    <meta name="author" content="OctoberCMS">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="generator" content="OctoberCMS">
+    <link rel="icon" type="image/png" href="http://october-builder.test/themes/tailwindcss-boilerplate/assets/images/october.png">
+    {% styles %}
+</head>
+
+<body class="bg-purple-800">
+    <div class="bg-purple-800 p-6">
+        <div class="bg-white flex flex-col font-sans">
+            <div class="container mx-auto px-8">
+                <!-- Empty header, just to show it works -->
+                {% partial 'site/header' %}
+
+                <!-- Content -->
+                <main class="flex flex-col-reverse sm:flex-row jusitfy-between items-center py-12">
+                    {% page %}
+                </main>
+
+                <!-- Not empty footer, it really works! -->
+                <footer>
+                    {% partial 'site/footer' %}
+                </footer>
+            </div>
+        </div>
+    </div>
+    <!-- Scripts -->
+
+        <!-- Needed to be injected before OctoberCMS JS Frameworks, don't touch this and be sure to put jQuery in your node_modules and require it in app.js -->
+        <!-- If removed, jQuery error will appear in console -->
+        
+            <script src="http://october-builder.test/themes/tailwindcss-boilerplate/assets/javascript/theme-dfd4e2e73136fe790b52.js"></script>
+        
+        
+            <link rel="stylesheet" property="stylesheet" href="http://october-builder.test/themes/tailwindcss-boilerplate/assets/css/theme-dfd4e2e73136fe790b52.css">
+        
+        <!-- End of don't touch this :) -->
+
+    {% framework extras %}
+    {% scripts %}
+
+</body>
+
+</html>
