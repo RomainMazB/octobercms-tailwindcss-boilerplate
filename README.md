@@ -3,7 +3,7 @@ TailwindCSS Boilerplate Theme
 
 ### This is not a theme, it's much more!
 
-TailwindCSS Boilerplate theme **is not a theme**, it's a boilerplate to create some awesome themes with all the developper's tools includes: TailwindCSS, Webpack, BrowserSync already configured to build with the OctoberCMS's directory structure, PostCSS with some the majors plugins, PurgeCSS, and all this managed with NPM.
+TailwindCSS Boilerplate theme **is not a theme**, it's a boilerplate to create some awesome themes with all the developper's tools includes: TailwindCSS, Webpack, BrowserSync already configured to build with the OctoberCMS's directory structure, PostCSS with some the majors plugins, PurgeCSS, and all of this managed with NPM.
 
 **Have fun!**
 
@@ -11,7 +11,7 @@ TailwindCSS Boilerplate theme **is not a theme**, it's a boilerplate to create s
 
 TailwindCSS, Webpack and PostCSS is already installed and pre-configured to work together. Each configuration file is pre-built but customizable.
 
-This boilerplate comes with webpack and fully customised `webpack.config.js` file for OctoberCMS to manage all your assets: css, javascript, images, fonts and also all your template files: **Webpack will walk through all you directory and subdirectory** present in your theme folder to compile the .htm, .html and .txt files to catch all the assets dependencies you may have added in them!
+This boilerplate comes with webpack and fully customised `webpack.config.js` file for OctoberCMS to manage all your assets: css, javascript, images, fonts and also all your template files: **Webpack will walk through all your directories and subdirectories** present in your theme folder to compile the .htm, .html and .txt files to catch all the assets dependencies you may have added in them!
 
 PostCSS is the prepocessor of this boilerplate with the most used plugins. Feel free to add the plugins you want into the `postcss.config.js`
 
@@ -21,11 +21,11 @@ To ensure the optimization of your final theme, all unused CSS will be removed w
 
 ### Auto-injection of CSS/JS
 
-**All the files presents in the layouts directory** will **receive the CSS/JS** due to the Webpack auto-injection and a special rule on this directory.
+**All the files presents in the layouts directory** will **receive the CSS/JS** due to the Webpack auto-injection and a special rule for this directory.
 
 ### Auto-clean of previous build
 
-This boilerplate uses `clean-webpack-plugin` to ensure you don't have any useless files in your themes directory. Your files is cleaned on every build webpack makes.
+This boilerplate uses `clean-webpack-plugin` to ensure you don't have any useless files in your theme folder. Your files is cleaned on every build webpack makes.
 
 How to use
 ==========
@@ -40,22 +40,22 @@ Again, this theme is not a theme, it's a toolkit, based on NPM. To use it, be su
 
 Then, follow this quick steps:
 
-1.  After installation of this toolkit, rename the folder to what you want your theme's name to be.
-2.  Modify the theme.yaml from sourcecode or OctoberCMS's administration wit the theme's name, description, author, and so on...
+1.  After installation of this toolkit (with git clone or from the OctoberCMS themes marketplace): rename the folder to what you want your theme's name to be.
+2.  Modify the theme.yaml from sourcecode or OctoberCMS's administration with the theme's name, description, author, and so on...
 3.  Run `npm install` from the theme directory to install dependencies.
 4.  Run `npm run watch` to run the the development server with hot reload.
 5.  Have fun!
 
-Be aware of the fact that every times you create a new file, you need to reload `npm run watch`.
+Be aware of the fact that every times you create a new file, it can't be detected by the devServer, you need to reload `npm run watch` command.
 
 ### Folder structure, where to put your code.
 
 Due to the pre-built configuration, you need to ensure all the modifications you make stay in the `src` directory. All directories, subdirectories and files will be cleaned and recreated by webpack on the root of the the theme'sroot folder. Think of the `src` directory as your **`root`** directory
 
-The defaults directories and files structure of this boilerplate are:
+The default directories and files structure of this boilerplate are:
 ```
 /
-/node\_modules/ (after npm install)
+/node_modules/ (after npm install)
 /src/
     /assets/
         /css/
