@@ -15,9 +15,6 @@ let path = require('path'),
     /* Defining paths */
     from = path.resolve('./src/'),
     to = path.resolve('./'),
-    PATHS = {
-        src: path.join(__dirname, 'src')
-    },
     themeAssetsUrl = process.env.APP_URL + '/' + path.join('themes', path.basename(__dirname), 'assets/'),
 
     /* Plugins to register */
@@ -32,7 +29,8 @@ let path = require('path'),
             chunkFilename: '[id]-[hash].css',
         }),
         new purgecssPlugin({
-            paths: () => glob.sync(`${PATHS.src}/**/*`, { nodir: true })
+            paths: () => glob.sync(from+'/**/*', { nodir: true }),
+            defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
         }),
         new CleanWebpackPlugin()
     ]
