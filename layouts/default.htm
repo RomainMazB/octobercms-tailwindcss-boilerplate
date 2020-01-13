@@ -11,9 +11,9 @@ description = "Default layout"
     <meta name="author" content="OctoberCMS">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="generator" content="OctoberCMS">
-    <link rel="icon" type="image/png" href="http://october-builder.test/themes/tailwindcss-boilerplate/assets/images/october.png">
+    <link rel="icon" type="image/png" href="{{ 'assets/images/october.png'|theme }}">
     {% styles %}
-</head>
+<link href="http://october-builder.test/themes/octobercms-tailwindcss-boilerplate/assets/css/theme-09fbf25b713a7c05ef1a.css" rel="stylesheet"></head>
 
 <body class="bg-purple-800">
     <div class="bg-purple-800 p-6">
@@ -23,7 +23,7 @@ description = "Default layout"
                 {% partial 'site/header' %}
 
                 <!-- Content -->
-                <main class="flex flex-col-reverse sm:flex-row jusitfy-between items-center py-12">
+                <main class="flex flex-col sm:flex-row jusitfy-between py-12">
                     {% page %}
                 </main>
 
@@ -38,17 +38,17 @@ description = "Default layout"
 
         <!-- Needed to be injected before OctoberCMS JS Frameworks, don't touch this and be sure to put jQuery in your node_modules and require it in app.js -->
         <!-- If removed, jQuery error will appear in console -->
-        
-            <script src="http://october-builder.test/themes/tailwindcss-boilerplate/assets/javascript/theme-dfd4e2e73136fe790b52.js"></script>
-        
-        
-            <link rel="stylesheet" property="stylesheet" href="http://october-builder.test/themes/tailwindcss-boilerplate/assets/css/theme-dfd4e2e73136fe790b52.css">
-        
+        <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
+            <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
+        <% } %>
+        <% for (var style in htmlWebpackPlugin.files.css) { %>
+            <link rel="stylesheet" property="stylesheet" href="<%= htmlWebpackPlugin.files.css[style]%>">
+        <% } %>
         <!-- End of don't touch this :) -->
 
     {% framework extras %}
     {% scripts %}
 
-</body>
+<script type="text/javascript" src="http://october-builder.test/themes/octobercms-tailwindcss-boilerplate/assets/javascript/theme-09fbf25b713a7c05ef1a.js"></script></body>
 
 </html>

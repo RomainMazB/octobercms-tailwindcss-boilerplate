@@ -1,11 +1,5 @@
 /* Custom css should be typed here if needed */
 
-.demo_url_in_css {
-  background-image: url(../images/october.png);
-  background-size: contain;
-  color:red;
-}
-
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
 /* Document
@@ -90,11 +84,19 @@ a {
  * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
  */
 
+abbr[title] {
+  border-bottom: none; /* 1 */
+  text-decoration: underline; /* 2 */
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted; /* 2 */
+}
+
 /**
  * Add the correct font weight in Chrome, Edge, and Safari.
  */
 
-b {
+b,
+strong {
   font-weight: bolder;
 }
 
@@ -103,7 +105,9 @@ b {
  * 2. Correct the odd `em` font sizing in all browsers.
  */
 
-code {
+code,
+kbd,
+samp {
   font-family: monospace, monospace; /* 1 */
   font-size: 1em; /* 2 */
 }
@@ -112,10 +116,30 @@ code {
  * Add the correct font size in all browsers.
  */
 
+small {
+  font-size: 80%;
+}
+
 /**
  * Prevent `sub` and `sup` elements from affecting the line height in
  * all browsers.
  */
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
 
 /* Embedded content
    ========================================================================== */
@@ -136,7 +160,11 @@ img {
  * 2. Remove the margin in Firefox and Safari.
  */
 
-button {
+button,
+input,
+optgroup,
+select,
+textarea {
   font-family: inherit; /* 1 */
   font-size: 100%; /* 1 */
   line-height: 1.15; /* 1 */
@@ -148,7 +176,8 @@ button {
  * 1. Show the overflow in Edge.
  */
 
-button { /* 1 */
+button,
+input { /* 1 */
   overflow: visible;
 }
 
@@ -157,7 +186,8 @@ button { /* 1 */
  * 1. Remove the inheritance of text transform in Firefox.
  */
 
-button { /* 1 */
+button,
+select { /* 1 */
   text-transform: none;
 }
 
@@ -199,6 +229,10 @@ button:-moz-focusring,
  * Correct the padding in Firefox.
  */
 
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
 /**
  * 1. Correct the text wrapping in Edge and IE.
  * 2. Correct the color inheritance from `fieldset` elements in IE.
@@ -206,13 +240,30 @@ button:-moz-focusring,
  *    `fieldset` elements in all browsers.
  */
 
+legend {
+  box-sizing: border-box; /* 1 */
+  color: inherit; /* 2 */
+  display: table; /* 1 */
+  max-width: 100%; /* 1 */
+  padding: 0; /* 3 */
+  white-space: normal; /* 1 */
+}
+
 /**
  * Add the correct vertical alignment in Chrome, Firefox, and Opera.
  */
 
+progress {
+  vertical-align: baseline;
+}
+
 /**
  * Remove the default vertical scrollbar in IE 10+.
  */
+
+textarea {
+  overflow: auto;
+}
 
 /**
  * 1. Add the correct box sizing in IE 10.
@@ -269,9 +320,17 @@ button:-moz-focusring,
  * Add the correct display in Edge, IE 10+, and Firefox.
  */
 
+details {
+  display: block;
+}
+
 /*
  * Add the correct display in all browsers.
  */
+
+summary {
+  display: list-item;
+}
 
 /* Misc
    ========================================================================== */
@@ -319,11 +378,17 @@ html {
  * Removes the default spacing and border for appropriate elements.
  */
 
-
+blockquote,
+dl,
+dd,
 h1,
+h2,
 h3,
+h4,
 h5,
+h6,
 hr,
+figure,
 p,
 pre {
   margin: 0;
@@ -342,6 +407,11 @@ button {
 button:focus {
   outline: 1px dotted;
   outline: 5px auto -webkit-focus-ring-color;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
 }
 
 ol,
@@ -412,14 +482,46 @@ img {
   border-style: solid;
 }
 
+textarea {
+  resize: vertical;
+}
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  color: #a0aec0;
+}
+
+input::-moz-placeholder, textarea::-moz-placeholder {
+  color: #a0aec0;
+}
+
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+  color: #a0aec0;
+}
+
+input::-ms-input-placeholder, textarea::-ms-input-placeholder {
+  color: #a0aec0;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #a0aec0;
+}
+
 button,
 [role="button"] {
   cursor: pointer;
 }
 
+table {
+  border-collapse: collapse;
+}
+
 h1,
+h2,
 h3,
-h5 {
+h4,
+h5,
+h6 {
   font-size: inherit;
   font-weight: inherit;
 }
@@ -442,7 +544,11 @@ a {
  * normalize.css.
  */
 
-button {
+button,
+input,
+optgroup,
+select,
+textarea {
   padding: 0;
   line-height: inherit;
   color: inherit;
@@ -456,7 +562,9 @@ button {
  */
 
 pre,
-code {
+code,
+kbd,
+samp {
   font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
@@ -468,7 +576,14 @@ code {
  * https://github.com/mozdevs/cssremedy/issues/14
  */
 
-img {
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
   display: block;
   vertical-align: middle;
 }
@@ -480,7 +595,8 @@ img {
  * https://github.com/mozdevs/cssremedy/issues/14
  */
 
-img {
+img,
+video {
   max-width: 100%;
   height: auto;
 }
@@ -513,6 +629,148 @@ img {
   }
 }
 
+.c-h1 {
+  font-weight: 700;
+  line-height: 1.25;
+  font-size: 3rem;
+}
+
+@media (min-width: 640px) {
+  .c-h1 {
+    font-size: 4rem;
+  }
+}
+
+.c-h2 {
+  font-weight: 700;
+  line-height: 1.25;
+  font-size: 2.25rem;
+}
+
+@media (min-width: 640px) {
+  .c-h2 {
+    font-size: 3rem;
+  }
+}
+
+.c-h3 {
+  font-weight: 700;
+  line-height: 1.25;
+  font-size: 2.25rem;
+}
+
+.c-h4 {
+  font-weight: 700;
+  line-height: 1.25;
+  font-size: 1.875rem;
+}
+
+.c-h5 {
+  font-weight: 700;
+  line-height: 1.25;
+  font-size: 1.5rem;
+}
+
+.c-h6 {
+  font-weight: 700;
+  line-height: 1.25;
+  font-size: 1.25rem;
+}
+
+.c-link {
+  font-weight: 700;
+  color: #63b3ed;
+}
+
+.c-link:hover {
+  color: #3182ce;
+  text-decoration: underline;
+}
+
+.c-rich-text {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.625;
+}
+
+.c-rich-text > * + * {
+  margin-top: 1em;
+}
+
+.c-rich-text h1 {
+  font-weight: 700;
+  line-height: 1.25;
+  font-size: 3rem;
+}
+
+@media (min-width: 640px) {
+  .c-rich-text h1 {
+    font-size: 4rem;
+  }
+}
+
+.c-rich-text h2 {
+  font-weight: 700;
+  line-height: 1.25;
+  font-size: 2.25rem;
+}
+
+@media (min-width: 640px) {
+  .c-rich-text h2 {
+    font-size: 3rem;
+  }
+}
+
+.c-rich-text h3 {
+  font-weight: 700;
+  line-height: 1.25;
+  font-size: 2.25rem;
+}
+
+.c-rich-text h4 {
+  font-weight: 700;
+  line-height: 1.25;
+  font-size: 1.875rem;
+}
+
+.c-rich-text h5 {
+  font-weight: 700;
+  line-height: 1.25;
+  font-size: 1.5rem;
+}
+
+.c-rich-text h6 {
+  font-weight: 700;
+  line-height: 1.25;
+  font-size: 1.25rem;
+}
+
+.c-rich-text ul {
+  list-style-type: disc;
+}
+
+.c-rich-text ol {
+  list-style-type: decimal;
+}
+
+.c-rich-text a {
+  font-weight: 700;
+  color: #63b3ed;
+}
+
+.c-rich-text a:hover {
+  color: #3182ce;
+  text-decoration: underline;
+}
+
+.c-rich-text b, .c-rich-text strong {
+  font-weight: 700;
+}
+
+.c-rich-text i, .c-rich-text em {
+  font-style: italic;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -542,32 +800,10 @@ img {
   display: flex;
 }
 
-.flex-row {
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-          flex-direction: row;
-}
-
 .flex-col {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
           flex-direction: column;
-}
-
-.flex-col-reverse {
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: reverse;
-          flex-direction: column-reverse;
-}
-
-.items-start {
-  -webkit-box-align: start;
-          align-items: flex-start;
-}
-
-.items-center {
-  -webkit-box-align: center;
-          align-items: center;
 }
 
 .font-sans {
@@ -576,10 +812,6 @@ img {
 
 .font-bold {
   font-weight: 700;
-}
-
-.h-10 {
-  height: 2.5rem;
 }
 
 .list-decimal {
@@ -615,14 +847,6 @@ img {
   padding-bottom: 3rem;
 }
 
-.relative {
-  position: relative;
-}
-
-.text-left {
-  text-align: left;
-}
-
 .text-center {
   text-align: center;
 }
@@ -647,11 +871,21 @@ img {
   font-style: italic;
 }
 
-.w-2 {
-  width: 0.5rem;
-}
+@media (min-width: 640px) {
 
-.w-10 {
-  width: 2.5rem;
+  .sm\:flex-row {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-direction: row;
+  }
+
+  .sm\:items-start {
+    -webkit-box-align: start;
+            align-items: flex-start;
+  }
+
+  .sm\:text-left {
+    text-align: left;
+  }
 }
 

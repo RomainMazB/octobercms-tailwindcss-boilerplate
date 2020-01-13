@@ -18,22 +18,7 @@ let path = require('path'),
     themeAssetsUrl = process.env.APP_URL + '/' + path.join('themes', path.basename(__dirname), 'assets/'),
 
     /* Plugins to register */
-    plugins = [
-        new browserSyncPlugin({
-            host: 'localhost',
-            port: 3000,
-            proxy: process.env.APP_URL+':80'
-        }),
-        new miniCSSExtractPlugin({
-            filename: 'css/theme-[hash].css',
-            chunkFilename: '[id]-[hash].css',
-        }),
-        new purgecssPlugin({
-            paths: () => glob.sync(from+'/**/*', { nodir: true }),
-            defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
-        }),
-        new CleanWebpackPlugin()
-    ]
+    HTMLPlugins = []
 
 async function config() {
 
@@ -55,7 +40,22 @@ async function config() {
             port: 9000,
             hot: true
         },
-        plugins: plugins,
+        plugins: [
+            new browserSyncPlugin({
+                host: 'localhost',
+                port: 3000,
+                proxy: process.env.APP_URL + ':80'
+            }),
+            new miniCSSExtractPlugin({
+                filename: 'css/theme-[hash].css',
+                chunkFilename: '[id]-[hash].css',
+            }),
+            new purgecssPlugin({
+                paths: () => glob.sync(from + '/**/*', { nodir: true }),
+                defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
+            }),
+            new CleanWebpackPlugin()
+        ].concat(HTMLPlugins),
         optimization: {
             minimizer: [
                 new uglifyJsPlugin({
@@ -100,6 +100,10 @@ async function config() {
                         name: 'images/[name].[ext]',
                         esModule: false
                     }
+                },
+                {
+                    test: /\.(html?|txt)$/i,
+                    loader: require.resolve('./custom_loaders/octobercms-loader'),
                 }
             ],
         },
@@ -175,14 +179,13 @@ function addHTMLWebpackObject(err, data) {
         }
 
         data.forEach((HTMLElement, key, data) => {
-            plugins.push(
+            HTMLPlugins.push(
                 new HTMLWebpackPlugin({
                     filename: to + "/" + HTMLElement.output_filename,
                     template: HTMLElement.template,
                     inject: HTMLElement.is_layout,
                     minify: true,
                     open: true,
-                    inject:false
                 })
             )
             if (Object.is(data.length - 1, key)) resolve();

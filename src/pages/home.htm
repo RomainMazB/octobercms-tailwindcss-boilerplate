@@ -2,7 +2,7 @@ title = "Demonstration"
 url = "/"
 layout = "default"
 ==
-<div class="sm:w-2/5 flex flex-col sm:items-start sm:text-left">
+<div class="flex flex-col sm:items-start sm:text-left">
     <h1 class="text-6xl text-center">TailwindCSS Boilerplate Theme</h1>
     <h3 class="text-2xl text-center">This is not a theme, it's much more!</h3>
 
@@ -105,25 +105,5 @@ layout = "default"
     </pre>
     <p class="py-3">After webpack build, all the files in the src will be parsed and placed on the same structure from
         the root folder.</p>
-    <h3 class="text-xl font-bold">How to handle images from HTML and CSS (and fonts)</h3>
-    <h5 class="text-l font-bold">From HTML:</h5>
-    <p class="py-3">Due to some webpack limitation, when you need to load file from the assets folder from the layouts,
-        pages or partials, you will need to inserts them with special syntax:</p>
-    <pre>&lt;img src=&lt;%&equals;require(&#34;./../images/october.png&#34;)%&gt; /&gt;</pre>
-    <p class="py-3">Will render the following image.</p>
-    <pre>&lt;img src="https://your-domain.test/themes/your-theme-name/images/october.png" /&gt;</pre>
-    <img src=<%=require("./../assets/images/october.png")%> class="w-10 h-10" />
-    <p class="py-3">Be careful to call the relative path from the current compiled file: if you were in the <span
-            class="bg-gray-200 px-2 italic">/partials/site/header.htm</span> file, this should have been
-        <span class="bg-gray-200 px-2 italic">./../../assets/october.png</span></p>
-    <h5 class="text-l font-bold">From CSS:</h5>
-    <p class="py-3">From the CSS files, just use the url() as you usually do, for fonts, or images:</p>
-    <pre>
-.demo_url_in_css {
-    background-image: url(../images/october.png);
-}
-    </pre>
-    <p class="py-3">Will render the following image. The same rules apply for CSS and HTML insert: use relative path
-        from the current CSS file to the images directory.</p>
-    <div class="demo_url_in_css w-10 h-10"></div>
 </div>
+

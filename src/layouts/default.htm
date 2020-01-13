@@ -11,7 +11,7 @@ description = "Default layout"
     <meta name="author" content="OctoberCMS">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="OctoberCMS">
-    <link rel="icon" type="image/png" href="<%=require('../assets/images/october.png')%>">
+    <link rel="icon" type="image/png" href="{{ 'assets/images/october.png'|theme }}">
     {% styles %}
 </head>
 
@@ -23,7 +23,7 @@ description = "Default layout"
                 {% partial 'site/header' %}
 
                 <!-- Content -->
-                <main class="flex flex-col-reverse sm:flex-row jusitfy-between items-center py-12">
+                <main class="flex flex-col sm:flex-row jusitfy-between py-12">
                     {% page %}
                 </main>
 
