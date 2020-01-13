@@ -34,18 +34,9 @@ description = "Default layout"
             </div>
         </div>
     </div>
-    <!-- Scripts -->
-
-        <!-- Needed to be injected before OctoberCMS JS Frameworks, don't touch this and be sure to put jQuery in your node_modules and require it in app.js -->
-        <!-- If removed, jQuery error will appear in console -->
-        <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
-            <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
-        <% } %>
-        <% for (var style in htmlWebpackPlugin.files.css) { %>
-            <link rel="stylesheet" property="stylesheet" href="<%= htmlWebpackPlugin.files.css[style]%>">
-        <% } %>
-        <!-- End of don't touch this :) -->
-
+    <!-- Scripts & Styles-->
+    <script src="{{ 'assets/javascript/theme.js'|theme }}'"></script>
+    <link rel="stylesheet" property="stylesheet" href="{{ 'assets/css/theme.css'|theme }}">
     {% framework extras %}
     {% scripts %}
 

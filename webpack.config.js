@@ -14,8 +14,8 @@ let path = require('path'),
 
     /* Defining paths */
     from = path.resolve('./src/'),
-    to = path.resolve('./'),
-    themeAssetsUrl = process.env.APP_URL + '/' + path.join('themes', path.basename(__dirname), 'assets/'),
+    to = path.resolve(__dirname),
+    publicPath = path.join('themes', path.basename(__dirname))
 
     /* Plugins to register */
     HTMLPlugins = []
@@ -30,9 +30,12 @@ async function config() {
             javascript: from + '/index.js'
         },
         output: {
-            filename: 'javascript/theme-[hash].js',
-            path: to + '/assets/',
-            publicPath: themeAssetsUrl
+            filename: 'assets/javascript/theme.js',
+            path: to,
+            publicPath: publicPath
+        },
+        resolveLoader: {
+            modules: ['node_modules', 'custom_loaders']
         },
         devServer: {
             contentBase: path.join(__dirname),
@@ -47,14 +50,16 @@ async function config() {
                 proxy: process.env.APP_URL + ':80'
             }),
             new miniCSSExtractPlugin({
-                filename: 'css/theme-[hash].css',
+                filename: 'assets/css/theme.css',
                 chunkFilename: '[id]-[hash].css',
             }),
             new purgecssPlugin({
                 paths: () => glob.sync(from + '/**/*', { nodir: true }),
                 defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
             }),
-            new CleanWebpackPlugin()
+            new CleanWebpackPlugin({
+                cleanOnceBeforeBuildPatterns: ["!version.yaml", "!assets/images/theme-preview.png", "!theme.yaml", "!src/", "!custom_loaders/", "!.gitignore", "!.git/", "!node_modules/", "!LICENSE", "!package-lock.json", "!package.json", "!postcss.config.js", "!README.md", "!tailwindcss.config.js", "!webpack.config.js"],
+            })
         ].concat(HTMLPlugins),
         optimization: {
             minimizer: [
@@ -90,20 +95,20 @@ async function config() {
                     test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
                     loader: 'file-loader',
                     options: {
-                        name: 'fonts/[name].[ext]'
+                        name: 'assets/fonts/[name].[ext]'
                     }
                 },
                 {
                     test: /\.(png|jpe?g|gif|svg|ico)$/i,
                     loader: 'file-loader',
                     options: {
-                        name: 'images/[name].[ext]',
+                        name: 'assets/images/[name].[ext]',
                         esModule: false
                     }
                 },
                 {
                     test: /\.(html?|txt)$/i,
-                    loader: require.resolve('./custom_loaders/octobercms-loader'),
+                    loader: 'theme-filter-loader'
                 }
             ],
         },
@@ -150,8 +155,7 @@ function filewalker(dir, ext, done) {
                         if (ext.includes(path.extname(file).substring(1))) {
                             results.push({
                                 output_filename: path.relative(from, file),
-                                template: file,
-                                is_layout: path.basename(path.dirname(file)) === 'layouts'
+                                template: file
                             });
                         }
                         // If last file to check
@@ -183,9 +187,9 @@ function addHTMLWebpackObject(err, data) {
                 new HTMLWebpackPlugin({
                     filename: to + "/" + HTMLElement.output_filename,
                     template: HTMLElement.template,
-                    inject: HTMLElement.is_layout,
+                    inject: false,
                     minify: true,
-                    open: true,
+                    open: true
                 })
             )
             if (Object.is(data.length - 1, key)) resolve();
