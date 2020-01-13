@@ -56,6 +56,11 @@ Due to the pre-built configuration, you need to ensure all the modifications you
 The default directories and files structure of this boilerplate are:
 ```
 /
+/assets
+    /images
+        theme-preview.png
+/custom_filter
+    theme-filter-loader.js
 /node_modules/ (after npm install)
 /src/
     /assets/
