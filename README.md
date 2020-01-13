@@ -89,6 +89,7 @@ The default directories and files structure of this boilerplate are:
 /README.md
 /tailwindcss.config.js
 /theme.yaml
+/version.yaml
 /webpack.config.js
 ```
 
