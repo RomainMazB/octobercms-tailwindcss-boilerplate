@@ -30,26 +30,27 @@ This boilerplate uses `clean-webpack-plugin` to ensure you don't have any useles
 How to use
 ==========
 
-### .env file needed
+**The theme is not prebuilt, when installed, you may see some errors: it's a normal behavior, I wanted to you to understand how to build before actually use and customize it.
+You have to build it before see it.**
 
+### .env file needed
 First of all: if it's not already the case, be sure to run `php artisan october:env`. This toolkit uses `APP_URL` inside of it to serve local server with BrowserSync and to correctly sets the paths of the assets. Be sure that it's correctly defined.
 
 ### NPM
-
 Again, this theme is not a theme, it's a toolkit, based on NPM. To use it, be sure to have [node](https://github.com/nodejs/node) and [npm](https://github.com/npm/cli) installed on your machine.
 
 Then, follow this quick steps:
 
-1.  After installation of this toolkit (with git clone or from the OctoberCMS themes marketplace): rename the folder to what you want your theme's name to be.
-2.  Modify the theme.yaml from sourcecode or OctoberCMS's administration with the theme's name, description, author, and so on...
-3.  Run `npm install` from the theme directory to install dependencies.
-4.  Run `npm run watch` to run the the development server with hot reload.
-5.  Have fun!
+1. After installation of this toolkit (with git clone or from the OctoberCMS themes marketplace): rename the folder to what you want your theme's name to be.
+2. Modify the theme.yaml from sourcecode or OctoberCMS's administration with the theme's name, description, author, and so on...
+3. Launch a terminal
+4. Run `npm install` from the theme's root directory to install dependencies.
+5. Run `npm run watch` to run the the development server with hot reload.
+6. The best and my favorite part: ***Have fun with coding!***
 
 Be aware of the fact that every times you create a new file, it can't be detected by the devServer, you need to reload `npm run watch` command.
 
 ### Folder structure, where to put your code.
-
 Due to the pre-built configuration, you need to ensure all the modifications you make stay in the `src` directory. All directories, subdirectories and files will be cleaned and recreated by webpack on the root of the the theme'sroot folder. Think of the `src` directory as your **`root`** directory
 
 The default directories and files structure of this boilerplate are:
@@ -86,36 +87,4 @@ The default directories and files structure of this boilerplate are:
 /webpack.config.js
 ```
 
-
-After webpack build, all the files in the src will be parsed and placed on the same structure from the root folder.
-
-### How to handle images from HTML and CSS (and fonts)
-
-##### From HTML:
-
-Due to some webpack limitation, when you need to load file from the assets folder from the layouts, pages or partials, you will need to inserts them with special syntax:
-
-```HTML
-<img src=<%=require("./../images/october.png")%> />
-```
-
-Will render the following tag.
-
-```HTML
-<img src="https://your-domain.test/themes/your-theme-name/images/october.png" />
-```
-
-Be careful to call the relative path from the current compiled file: if you were in the `/partials/site/header.htm` file, this should have been `./../../assets/october.png`
-
-##### From CSS:
-
-From the CSS files, just use the url() as you usually do, for fonts, or images:
-
-```CSS
-.demo_url_in_css {
-    background-image: url(../images/october.png);
-}
-```
-
-
-Will render just as it is. The same rules apply for CSS and HTML insert: use relative path from the current CSS file to the images directory.
+After webpack build, all the relevant files in the src will be parsed and placed on the same structure from the root folder.
