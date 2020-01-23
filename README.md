@@ -103,6 +103,6 @@ After webpack build, all the relevant files in the src will be parsed and placed
 
 Roadmap
 ==========
-[ ] Cleanup and split files to be more maintainable
-[ ] Create a backend plugin for the customization of the boilerplate
-[ ] Add rules to PurgeCSS to handle OctoberCMS Froala Editor content
+* [ ] Cleanup and split files to be more maintainable
+* [ ] Create a backend plugin for the customization of the boilerplate
+* [ ] Add rules to PurgeCSS to handle OctoberCMS Froala Editor content
