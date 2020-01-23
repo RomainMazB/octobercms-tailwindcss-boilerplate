@@ -8,24 +8,28 @@ TailwindCSS Boilerplate theme **is not a theme**, it's a boilerplate to create s
 **Have fun!**
 
 ### TailwindCSS/Webpack/PostCSS ready
-
+<details><summary>Display content</summary>
 TailwindCSS, Webpack and PostCSS is already installed and pre-configured to work together. Each configuration file is pre-built but customizable.
 
 This boilerplate comes with webpack and fully customised `webpack.config.js` file for OctoberCMS to manage all your assets: css, javascript, images, fonts and also all your template files: **Webpack will walk through all your directories and subdirectories** present in your theme folder to compile the .htm, .html and .txt files to catch all the assets dependencies you may have added in them!
 
 PostCSS is the prepocessor of this boilerplate with the most used plugins. Feel free to add the plugins you want into the `postcss.config.js`
+</details>
 
 ### PurgeCSS & Minification
-
+<details><summary>Display content</summary>
 To ensure the optimization of your final theme, all unused CSS will be removed with PurgeCSS, and all the JS and CSS files will be minified
+</details>
 
 ### Auto-injection of CSS/JS
-
+<details><summary>Display content</summary>
 **All the files presents in the layouts directory** will **receive the CSS/JS** due to the Webpack auto-injection and a special rule for this directory.
+</details>
 
 ### Auto-clean of previous build
-
+<details><summary>Display content</summary>
 This boilerplate uses `clean-webpack-plugin` to ensure you don't have any useless files in your theme folder. Your files is cleaned on every build webpack makes.
+</details>
 
 How to use
 ==========
@@ -54,6 +58,7 @@ Be aware of the fact that every times you create a new file, it can't be detecte
 Due to the pre-built configuration, you need to ensure all the modifications you make stay in the `src` directory. All directories, subdirectories and files will be cleaned and recreated by webpack on the root of the the theme'sroot folder. Think of the `src` directory as your **`root`** directory
 
 The default directories and files structure of this boilerplate are:
+<details><summary>Show the files structure</summary>
 ```
 /
 /assets
@@ -92,5 +97,12 @@ The default directories and files structure of this boilerplate are:
 /version.yaml
 /webpack.config.js
 ```
+</details>
 
 After webpack build, all the relevant files in the src will be parsed and placed on the same structure from the root folder.
+
+Roadmap
+==========
+[ ] Cleanup and split files to be more maintainable
+[ ] Create a backend plugin for the customization of the boilerplate
+[ ] Add rules to PurgeCSS to handle OctoberCMS Froala Editor content
