@@ -58,7 +58,6 @@ Be aware of the fact that every times you create a new file, it can't be detecte
 Due to the pre-built configuration, you need to ensure all the modifications you make stay in the `src` directory. All directories, subdirectories and files will be cleaned and recreated by webpack on the root of the the theme'sroot folder. Think of the `src` directory as your **`root`** directory
 
 The default directories and files structure of this boilerplate are:
-<details><summary>Show the files structure</summary>
 ```
 /
 /assets
@@ -97,7 +96,6 @@ The default directories and files structure of this boilerplate are:
 /version.yaml
 /webpack.config.js
 ```
-</details>
 
 After webpack build, all the relevant files in the src will be parsed and placed on the same structure from the root folder.
 
