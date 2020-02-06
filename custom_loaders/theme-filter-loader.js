@@ -1,6 +1,6 @@
 let path = require('path'),
     fs = require('fs'),
-    themeRegex = /\{\{[\s?]*["|'|`](.*[\.[png|jpe?g|gif|ico])["|'|`][\s?]*\|[\s?]*theme[\s?]*\}\}/g;
+    themeRegex = /\{\{[\s?]*["|'|`](?!assets\/javascript\/theme\.js)(.*)["|'|`][\s?]*\|[\s?]*theme[\s?]*\}\}/g;
 
 module.exports = function (content, map, meta) {
     let filterTags = content.match(themeRegex)
