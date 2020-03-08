@@ -1,19 +1,19 @@
 let path = require('path'),
     fs = require('fs'),
-    themeRegex = /\{\{[\s?]*["|'|`](?!assets\/javascript\/theme\.js)(.*)["|'|`][\s?]*\|[\s?]*theme[\s?]*\}\}/g;
+    // Regex to match all the |theme filter except the theme.js file which is already handled by webpack
+    themeRegex = /\{\{[\s?]*["|'|`](.*)["|'|`][\s?]*\|[\s?]*theme[\s?]*\}\}/g;
 
-module.exports = function (content, map, meta) {
-    let filterTags = content.match(themeRegex)
-    if (filterTags) {
-        output = true
-        filterTags = [...new Set(filterTags)]
-        filterTags.map(filterTag => {
-            let parts = themeRegex.exec(filterTag),
-                fromFullPath = path.join(this.rootContext, 'src/', parts[1]),
-                file = fs.readFileSync(fromFullPath)
-                fromRelativePath = path.relative(this.context, fromFullPath)
-            this.emitFile(parts[1], file)
-        })
+module.exports = function (content) {
+    // This files must be protected since it's already handle by webpack
+    let protected_files = ['assets/javascript/theme.js', 'assets/css/theme.css'];
+    // Find any |theme filter use
+    while((parts = themeRegex.exec(content)) !== null) {
+        if (protected_files.includes(parts[1]))
+            continue;
+
+        let fromFullPath = path.join(this.rootContext, 'src/', parts[1]),
+            file = fs.readFileSync(fromFullPath)
+        this.emitFile(parts[1], file)
     }
 
     return 'module.exports = [\n' +
