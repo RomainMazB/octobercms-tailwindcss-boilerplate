@@ -31,6 +31,13 @@ To ensure the optimization of your final theme, all unused CSS will be removed w
 This boilerplate uses `clean-webpack-plugin` to ensure you don't have any useless files in your theme folder. Your files is cleaned on every build webpack makes.
 </details>
 
+Specific update instructions
+==========
+
+**When you install this boilerplate, be sure in the first step to duplicate the theme directoy into your October themes folder: you need to keep a fresh copy of the boilerplate to be sure to be warned when some updates are pushed, and you must avoid to work directly on the fresh install because any updates will make you lose your work!**
+
+When an update is made: just copy the modified files (exhausted list will always be specified in the version.yaml file) from the fresh folder to your modified theme folder.
+
 How to use
 ==========
 
@@ -45,7 +52,7 @@ Again, this theme is not a theme, it's a toolkit, based on NPM. To use it, be su
 
 Then, follow this quick steps:
 
-1. After installation of this toolkit (with git clone or from the OctoberCMS themes marketplace): rename the folder to what you want your theme's name to be.
+1. After installation of this toolkit (with git clone or from the OctoberCMS themes marketplace): duplicate and rename the the copied folder to what you want your theme's name to be.
 2. Modify the theme.yaml from sourcecode or OctoberCMS's administration with the theme's name, description, author, and so on...
 3. Launch a terminal
 4. Run `npm install` from the theme's root directory to install dependencies.
