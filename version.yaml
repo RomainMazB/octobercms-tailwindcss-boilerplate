@@ -1,3 +1,3 @@
-1.0.1: Theme initialization, before use PLEASE READ the SPECIFIC UPDATES INSTRUCTIONS in Readme file!!
+1.0.1: Theme initialization, before use PLEASE READ the SPECIFIC UPDATES INSTRUCTIONS in Readme file
 1.0.2: Fix no such file 'assets/javascript/theme.js' issue (Modified files: custom_loaders/theme-filter-loader.js)
 1.0.3: Fix issue which didn't copy all the files (Modified files: custom_loaders/theme-filter-loader.js)
