@@ -1,2 +1,3 @@
-1.0.1: Theme initialization
+1.0.1: Theme initialization, PLEASE READ the SPECIFIC update instruction in readme
 1.0.2: Fix no such file 'assets/javascript/theme.js' issue
+1.0.3: Fix issue which didn't copy all the files
