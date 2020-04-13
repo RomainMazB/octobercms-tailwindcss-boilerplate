@@ -7,3 +7,6 @@
 1.0.3:
     - Fix issue which didn't copy all the files
     - Modified file custom_loaders/theme-filter-loader.js
+1.0.4:
+    - Fix typo causing error 404 on theme.js in the layout import
+    - Modified file src/layouts/default.htm
