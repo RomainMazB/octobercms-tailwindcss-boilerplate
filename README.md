@@ -38,17 +38,17 @@ How to use
 **The theme is not prebuilt, when installed, you may see some errors: it's a normal behavior, I wanted to you to understand how to build before actually use and customize it.
 You have to build it before see it.**
 
-### Create a new Blank theme
-From the backend, create a new blank theme from the settings panel, activate it and remember the folder name of it, you will need it for the next step.
+### Configure the new Blank theme
+The Boilerplate comes with a virgin blank theme, and use the theme.yaml configuration file to create the new theme directory.
+Modify as you want the theme name and theme code in the theme.yaml :
+- If a theme code is defined, it will be used as the theme's directory name.
+- If not it will slug the theme name provided to create the theme's directory.
+- If no theme code or theme name were defined, webpack will create a "blank" directory in your themes folder.
 
 ### .env file needed
 First of all: if it's not already the case, be sure to run `php artisan october:env`, it will create an .env file at the root of your project folder.
 
-In this `.env` file, add the name of the blank theme you've just created:
-```dotenv
-ACTIVE_THEME_FOLDER=blank_theme_folder
-```
-Webpack will also use `APP_URL` inside of it to serve the local server with BrowserSync and to correctly sets the paths of the assets. Be sure that it's correctly defined:
+Webpack will use `APP_URL` inside of it to serve the local server with BrowserSync and to correctly sets the paths of the assets. Be sure that it's correctly defined:
 ```dotenv
 APP_URL=http://dummy.test
 ```
@@ -70,47 +70,49 @@ Due to the pre-built configuration, you need to ensure all the modifications you
 
 The default directories and files structure of this boilerplate are:
 ```
-/
-/assets
-    /images
-        theme-preview.png
-/custom_filter
-    theme-filter-loader.js
-/node_modules/ (after npm install)
-/src/
-    /assets/
-        /css/
-            entry.css (loads TailwindCSS and inserts your custom css at the right place)
-            themes.css (your actual custom css)
-        /fonts/
-        /images/
-            october.png
-        /javascript/
-            app.js (your custom javascript)
-    /content/
-    /layouts/
-        /default.htm
-    /pages/
-        404.htm
-        error.htm
-        home.htm
-    /partials/
-        /site/
-            footer.htm
-            header.htm
-    index.js
-/package.json
-/postcss.config.js
-/README.md
-/tailwindcss.config.js
-/theme.yaml
-/version.yaml
-/webpack.config.js
+root
+|   index.js
+|   package.json
+|   postcss.config.js
+|   README.md
+|   tailwindcss.config.js
+|   theme.yaml
+|   version.yaml
+|   webpack.config.js
+└----assets
+|   |   theme-preview.png
+|   └----images
+└----custom_filter
+|   |   theme-filter-loader.js
+└----node_modules (after npm install)
+└----src
+|   |   theme.yaml
+|   |   version.yaml
+└----assets
+|   └----css
+|   |   entry.css (loads TailwindCSS and inserts your custom css at the right place)
+|   |   themes.css (your actual custom css)
+|   └----fonts
+|   └----images
+|   |   october.png
+|   └----javascript
+|   |   app.js (your custom javascript)
+└----content
+└----layouts
+|   |   default.htm
+└----pages
+|   |   404.htm
+|   |   error.htm
+|   |   home.htm
+└----partials
+|   └----site
+|   |   footer.htm
+|   |   header.htm
 ```
 
 After webpack build, all the relevant files in the src will be parsed and placed on the same structure from the root folder.
 
 Roadmap
 ==========
-* [ ] Cleanup and split files to be more maintainable
+* [x] Cleanup and split files to be more maintainable
 * [ ] Add rules to PurgeCSS to handle OctoberCMS Froala Editor content
