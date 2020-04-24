@@ -1,2 +1,2 @@
-import './assets/javascript/app.js'
-import './assets/css/entry.css'
+import './src/assets/javascript/app.js'
+import './src/assets/css/entry.css'

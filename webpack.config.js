@@ -21,14 +21,15 @@ let path = require('path'),
     /* Plugins to register */
     HTMLPlugins = []
 
-async function config() {
+async function config()
+{
 
     await filewalker(from, ['htm', 'html', 'txt'], addHTMLWebpackObject);
 
     return {
         mode: 'development',
         entry: {
-            javascript: from + '/index.js'
+            javascript: './index.js'
         },
         output: {
             filename: 'assets/javascript/theme.js',
@@ -62,13 +63,13 @@ async function config() {
                 cleanOnceBeforeBuildPatterns: ["!version.yaml", "!assets/images/theme-preview.png", "!theme.yaml", "!.gitignore", "!.git/", "!LICENSE", "!README.md"],
             })
         ].concat(HTMLPlugins),
-        optimization: {
-            minimizer: [
-                new uglifyJsPlugin({
-                    test: /\.js(\?.*)?$/i,
+    optimization: {
+        minimizer: [
+            new uglifyJsPlugin({
+                test: /\.js(\?.*)?$/i,
                 }),
-                new optimizeCSSAssetsPlugin({
-                    test: /\.css$/
+            new optimizeCSSAssetsPlugin({
+                test: /\.css$/
                 })
             ]
         },
@@ -82,23 +83,23 @@ async function config() {
                             options: {
                                 publicPath: '../'
                             }
-                        },
+                    },
                         {
                             loader: 'css-loader',
                             options: {
                                 importLoaders: 1
                             }
-                        },
+                    },
                         'postcss-loader'
                     ],
-                },
+            },
                 {
                     test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
                     loader: 'file-loader',
                     options: {
                         name: 'assets/fonts/[name].[ext]'
                     }
-                },
+            },
                 {
                     test: /\.(png|jpe?g|gif|svg|ico)$/i,
                     loader: 'file-loader',
@@ -106,11 +107,11 @@ async function config() {
                         name: 'assets/images/[name].[ext]',
                         esModule: false
                     }
-                },
+            },
                 {
                     test: /\.(html?|txt)$/i,
                     loader: 'theme-filter-loader'
-                }
+            }
             ],
         },
     }
@@ -127,16 +128,21 @@ module.exports = config();
  * @param {String} ext
  * @param {Function} done
  */
-function filewalker(dir, ext, done) {
+function filewalker(dir, ext, done)
+{
     let dirs_to_ignore = [process.cwd()+'/node_modules', process.cwd()+'/custom_loaders', process.cwd()+'/.git'];
     return new Promise(resolve => {
             let results = [];
         fs.readdir(dir, function (err, list) {
-            if (err) return done(err);
+            if (err) {
+                return done(err);
+            }
 
             let pending = list.length;
 
-            if (!pending) return done(null, results);
+            if (!pending) {
+                return done(null, results);
+            }
 
             list.forEach(async function (file) {
                 if (! dirs_to_ignore.includes(dir)) {
@@ -178,7 +184,8 @@ function filewalker(dir, ext, done) {
  * @param {String} err
  * @param {Object} data
  */
-function addHTMLWebpackObject(err, data) {
+function addHTMLWebpackObject(err, data)
+{
     return new Promise((resolve, reject) => {
         if (err) {
             reject(err);
@@ -194,7 +201,9 @@ function addHTMLWebpackObject(err, data) {
                     open: true
                 })
             )
-            if (Object.is(data.length - 1, key)) resolve();
+        if (Object.is(data.length - 1, key)) {
+            resolve();
+        }
         });
     });
 }
