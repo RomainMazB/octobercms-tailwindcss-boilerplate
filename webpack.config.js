@@ -13,9 +13,10 @@ let path = require('path'),
     glob = require('glob'),
 
     /* Defining paths */
+    active_theme_folder = process.env.ACTIVE_THEME_FOLDER,
     from = path.resolve('./src/'),
-    to = path.resolve(__dirname),
-    publicPath = path.join('themes', path.basename(__dirname))
+    to = path.resolve('../' + active_theme_folder),
+    publicPath = path.join('themes', active_theme_folder)
 
     /* Plugins to register */
     HTMLPlugins = []
@@ -38,7 +39,7 @@ async function config() {
             modules: ['node_modules', 'custom_loaders']
         },
         devServer: {
-            contentBase: path.join(__dirname),
+            contentBase: path.join(to),
             compress: true,
             port: 9000,
             hot: true
@@ -58,7 +59,7 @@ async function config() {
                 defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
             }),
             new CleanWebpackPlugin({
-                cleanOnceBeforeBuildPatterns: ["!version.yaml", "!assets/images/theme-preview.png", "!theme.yaml", "!src/", "!custom_loaders/", "!.gitignore", "!.git/", "!node_modules/", "!LICENSE", "!package-lock.json", "!package.json", "!postcss.config.js", "!README.md", "!tailwindcss.config.js", "!webpack.config.js"],
+                cleanOnceBeforeBuildPatterns: ["!version.yaml", "!assets/images/theme-preview.png", "!theme.yaml", "!.gitignore", "!.git/", "!LICENSE", "!README.md"],
             })
         ].concat(HTMLPlugins),
         optimization: {
@@ -127,48 +128,49 @@ module.exports = config();
  * @param {Function} done
  */
 function filewalker(dir, ext, done) {
+    let dirs_to_ignore = [process.cwd()+'/node_modules', process.cwd()+'/custom_loaders', process.cwd()+'/.git'];
     return new Promise(resolve => {
-        let results = [];
-
+            let results = [];
         fs.readdir(dir, function (err, list) {
             if (err) return done(err);
 
-            var pending = list.length;
+            let pending = list.length;
 
             if (!pending) return done(null, results);
 
-            list.forEach(function (file) {
-                file = path.resolve(dir, file);
-
-                fs.stat(file, async function (err, stat) {
-                    // If directory, execute a recursive call
-                    if (stat && stat.isDirectory()) {
-                        filewalker(file, ext, async function (err, res) {
-                            results = results.concat(res);
+            list.forEach(async function (file) {
+                if (! dirs_to_ignore.includes(dir)) {
+                    file = path.resolve(dir, file);
+                    fs.stat(file, async function (err, stat) {
+                        // If directory, execute a recursive call
+                        if (stat && stat.isDirectory()) {
+                            await filewalker(file, ext, async function (err, res) {
+                                results = results.concat(res);
+                                if (!--pending) {
+                                    await done(null, results);
+                                    resolve();
+                                }
+                            });
+                        } else {
+                            // If extension matches
+                            if (ext.includes(path.extname(file).substring(1))) {
+                                results.push({
+                                    output_filename: path.relative(from, file),
+                                    template: file
+                                });
+                            }
+                            // If last file to check
                             if (!--pending) {
                                 await done(null, results);
                                 resolve();
                             }
-                        });
-                    } else {
-                        // If extension matches
-                        if (ext.includes(path.extname(file).substring(1))) {
-                            results.push({
-                                output_filename: path.relative(from, file),
-                                template: file
-                            });
                         }
-                        // If last file to check
-                        if (!--pending) {
-                            await done(null, results);
-                            resolve();
-                        }
-                    }
-                });
+                    });
+                }
             });
         });
     });
-};
+}
 
 /**
  * Create new HTML Webpack Objects from an array of input/output path
