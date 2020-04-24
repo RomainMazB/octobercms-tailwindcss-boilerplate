@@ -11,12 +11,16 @@ let path = require('path'),
     optimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin'),
     fs = require('fs'),
     glob = require('glob'),
+    yaml = require('js-yaml'),
 
     /* Defining paths */
-    active_theme_folder = process.env.ACTIVE_THEME_FOLDER,
     from = path.resolve('./src/'),
-    to = path.resolve('../' + active_theme_folder),
-    publicPath = path.join('themes', active_theme_folder)
+    // Generate the new theme path folder form theme.yaml
+    themeConfig = fs.readFileSync(path.join(from, './theme.yaml'), 'utf8'),
+    data = yaml.safeLoad(themeConfig),
+    themeDir = data.code ? data.code : data.name ? data.name.replace(/[^a-z0-9_-]/gi, '_').replace(/_{2,}/g, '_').toLowerCase() : 'blank',
+    to = path.resolve('../' + themeDir),
+    publicPath = path.join('themes', themeDir)
 
     /* Plugins to register */
     HTMLPlugins = []
@@ -40,7 +44,7 @@ async function config()
             modules: ['node_modules', 'custom_loaders']
         },
         devServer: {
-            contentBase: path.join(to),
+            contentBase: to,
             compress: true,
             port: 9000,
             hot: true
@@ -207,3 +211,4 @@ function addHTMLWebpackObject(err, data)
         });
     });
 }
+
