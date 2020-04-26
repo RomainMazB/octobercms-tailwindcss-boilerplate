@@ -1,8 +1,11 @@
 module.exports = {
-    plugins: [
+    'parser': 'sugarss',
+    'plugins': [
         require('postcss-import'),
         require('tailwindcss'),
+        require('postcss-apply'),
         require('postcss-nested'),
+        // 'postcss-custom-properties',
         require('autoprefixer')
     ]
 }

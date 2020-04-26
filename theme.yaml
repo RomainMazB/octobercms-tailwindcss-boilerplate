@@ -1,8 +1,5 @@
-name: TailwindCSS Boilerplate
-description: TailwindCSS with Webpack, PostCSS and PurgeCSS pre-configured for OctoberCMS to quickly create awesome themes.
+name: 'TailwindCSS Boilerplate'
+description: 'TailwindCSS with Webpack, PostCSS and PurgeCSS pre-configured for OctoberCMS to quickly create awesome themes.'
 author: "Romain 'Maz' B"
-homepage: https://www.maz.digital
-code: TwCSS-Boilerplate
-
-require:
-    - RomainMazB.TailwindBoilerplate
+homepage: 'https://www.maz.digital'
+code: ''
