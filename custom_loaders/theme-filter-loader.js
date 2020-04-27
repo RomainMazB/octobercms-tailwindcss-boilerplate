@@ -1,7 +1,7 @@
 let path = require('path'),
     fs = require('fs'),
     loaderUtils = require('loader-utils')
-    themeRegex = /\{\{[\s?]*["|'|`](.*[\.[png|jpe?g|gif|ico])["|'|`][\s?]*\|[\s?]*theme[\s?]*\}\}/g;
+    themeRegex = /\{\{[\s?]*["|'|`](.*[\.[webp|png|jpe?g|gif|ico])["|'|`][\s?]*\|[\s?]*theme[\s?]*\}\}/g;
 
 module.exports = function (content, map, meta) {
     let options = loaderUtils.getOptions(this)

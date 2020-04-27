@@ -77,7 +77,7 @@ async function config()
                     outputPath: (url, resourcePath, context) => path.relative(from, resourcePath)
                 }
             },{
-                test: /\.(png|jpe?g|gif|svg|ico)$/i,
+                test: /\.(webp|png|jpe?g|gif|svg|ico)$/i,
                 loader: 'file-loader',
                 options: {
                     name: '[name].[ext]',
