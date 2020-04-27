@@ -18,3 +18,4 @@ module.exports = function (content, map, meta) {
         JSON.stringify(content) +
         '\n].join();'
 }
+
