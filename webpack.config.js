@@ -76,13 +76,15 @@ async function config()
                 test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
                 loader: 'file-loader',
                 options: {
-                    name: '[name].[ext]'
+                    name: '[name].[ext]',
+                    outputPath: (url, resourcePath, context) => path.relative(from, resourcePath)
                 }
             },{
                 test: /\.(png|jpe?g|gif|svg|ico)$/i,
                 loader: 'file-loader',
                 options: {
-                    name: '[name].[ext]'
+                    name: '[name].[ext]',
+                    outputPath: (url, resourcePath, context) => path.relative(from, resourcePath)
                 }
             },{
                 test: /\.(html?|txt)$/i,
