@@ -60,10 +60,7 @@ async function config()
                 chunkFilename: '[id]-[hash].css',
             }),
             ... process.env.NODE_ENV === 'production' ? [
-                new PurgecssPlugin({
-                    paths: glob.sync(`${from}/**/*.htm`,  { nodir: true }),
-                    defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
-                }),
+                new PurgecssPlugin(require(`${from}/purgecss.config.js`)),
                 new CleanWebpackPlugin()
             ] : [],
             new copyPlugin(filesToCopy, {copyUnmodified: true})
