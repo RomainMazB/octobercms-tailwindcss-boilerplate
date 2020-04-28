@@ -10,3 +10,6 @@
 1.0.4:
     - Fix typo causing error 404 on theme.js in the layout import
     - Modified file src/layouts/default.htm
+1.1.0:
+    - Major release!! You do not have to watch the modified files anymore.
+    - !!!! PLEASE READ THE NEW USE INSTRUCTIONS !!!!
