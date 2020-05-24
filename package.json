@@ -1,6 +1,6 @@
 {
     "name": "tailwindcss-boilerplate",
-    "version": "1.4.0",
+    "version": "1.4.1",
     "description": "The perfect TailwindCSS boilerplate for theme creation on OctoberCMS",
     "main": "index.js",
     "scripts": {
