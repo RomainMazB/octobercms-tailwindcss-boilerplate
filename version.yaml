@@ -14,3 +14,4 @@
     - Major release!! You do not have to watch the modified files anymore.
     - !!!! PLEASE READ THE NEW USE INSTRUCTIONS !!!!
 1.1.1: Bump tailwindcss to ^1.4.5
+1.1.2: Fix boilerplate's plugin dependency
