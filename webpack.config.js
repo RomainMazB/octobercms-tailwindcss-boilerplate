@@ -4,9 +4,7 @@ require('dotenv').config({path: __dirname + '/./../../.env'})
 let path = require('path'),
     webpack = require('webpack'),
     browserSyncPlugin = require('browser-sync-webpack-plugin'),
-    glob = require('glob'),
     miniCSSExtractPlugin = require('mini-css-extract-plugin'),
-    PurgecssPlugin = require('purgecss-webpack-plugin'),
     {CleanWebpackPlugin} = require('clean-webpack-plugin'),
     copyPlugin = require('copy-webpack-plugin'),
     fs = require('fs'),
@@ -60,7 +58,6 @@ async function config()
                 chunkFilename: '[id]-[hash].css',
             }),
             ... process.env.NODE_ENV === 'production' ? [
-                new PurgecssPlugin(require(`${from}/purgecss.config.js`)),
                 new CleanWebpackPlugin()
             ] : [],
             new copyPlugin(filesToCopy, {copyUnmodified: true})

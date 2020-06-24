@@ -15,3 +15,8 @@
     - !!!! PLEASE READ THE NEW USE INSTRUCTIONS !!!!
 1.1.1: Bump tailwindcss to ^1.4.5
 1.1.2: Fix boilerplate's plugin dependency
+1.2.0:
+    - Move PurgeCSS to the new TailwindCSS Built-in process
+    - Bump tailwindcss to ^1.4.6
+    - Clean unused packages
+    - Add more friendly errors

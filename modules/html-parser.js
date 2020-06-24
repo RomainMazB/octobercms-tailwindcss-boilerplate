@@ -16,18 +16,23 @@ let HTMLWebpackPlugin = require('html-webpack-plugin'),
 function htmlParser(rootDir, to,  ext, done = addHTMLWebpackObject, dir = rootDir)
 {
     let results = [],
-        // dirs_to_ignore = [path.join(rootDir, 'node_modules'), path.join(rootDir, '.git')]
         dirs_to_ignore = [path.join(rootDir, 'node_modules'), path.join(rootDir, '.git')]
 
     return new Promise((resolve, reject) => {
         fs.readdir(dir, function (err, list) {
             if (err) {
+                if (!results.length) {
+                    throw new Error("\r\n========\r\nTailwindCSS Boilerplate\r\nCan't found "+ rootDir +" directory.\r\n========")
+                }
                 reject(err);
             }
 
             let pending = list.length;
 
             if (!pending) {
+                if (!results.length) {
+                    throw new Error("\r\n========\r\nTailwindCSS Boilerplate\r\nNo HTML was found in your theme-src directory.\r\n========")
+                }
                 return done(null, results, to);
             }
 
