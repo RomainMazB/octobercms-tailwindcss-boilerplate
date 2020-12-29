@@ -20,3 +20,7 @@
     - Bump tailwindcss to ^1.4.6
     - Clean unused packages
     - Add more friendly errors
+1.3.0:
+    - Upgrade to TailwindCSS 2 and PostCSS8
+    - Add tailwindcss forms, aspect-ratio and forms as default plugins
+    - Cleanup packages
