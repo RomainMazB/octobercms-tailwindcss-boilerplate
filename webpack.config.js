@@ -20,7 +20,9 @@ async function config()
         data = yaml.safeLoad(themeConfig),
         from = path.resolve(`../${data.themeName}-src`),
         to = path.resolve(`../${data.themeName}`),
-        publicPath = path.join('themes', data.themeName)
+        publicPath = path.join('themes', data.themeName),
+        appPort = process.env.APP_PORT ?? '80',
+        proxy = `${process.env.APP_URL}:${appPort}`
 
     let HTMLPlugins = await htmlParser(from, to, ['htm', 'html', 'txt'])
 
@@ -51,7 +53,7 @@ async function config()
             new browserSyncPlugin({
                 host: 'localhost',
                 port: 3000,
-                proxy: process.env.APP_URL + ':80'
+                proxy
             }),
             new miniCSSExtractPlugin({
                 filename: 'assets/css/theme.css',
