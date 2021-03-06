@@ -40,6 +40,9 @@ First of all: if it's not already the case, be sure to run `php artisan october:
 Webpack will use `APP_URL` inside of it to serve the local server with BrowserSync and to correctly sets the paths of the assets. Be sure that it's correctly defined:
 ```dotenv
 APP_URL=http://dummy.test
+
+# OPTIONAL: Defaults to 80, you may use a custom local port:
+APP_PORT=8000
 ```
 
 #### Configure the new Blank theme
