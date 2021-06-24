@@ -29,3 +29,5 @@
     - Added APP_PORT config from .env file
 1.3.2:
     - Update blank-src packages
+1.3.3:
+	- Fix ternary operator in twig markup and html markup in PHP section

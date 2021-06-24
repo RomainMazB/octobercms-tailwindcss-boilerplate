@@ -96,7 +96,16 @@ function addHTMLWebpackObject(err, data = null, to = null)
                     filename: to + "/" + HTMLElement.output_filename,
                     template: HTMLElement.template,
                     inject: false,
-                    minify: true,
+                    minify: process.env.NODE_ENV === 'production' ? {
+                        collapseWhitespace: true,
+                        keepClosingSlash: true,
+                        removeComments: true,
+                        removeRedundantAttributes: true,
+                        removeScriptTypeAttributes: true,
+                        removeStyleLinkTypeAttributes: true,
+                        useShortDoctype: false,
+                        ignoreCustomFragments: [/(.*\n)*==(\n)*<?/, /{%.*%}/, /{{.*}}/]
+                    } : false,
                     open: true
                 })
             )
