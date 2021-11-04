@@ -31,3 +31,5 @@
     - Update blank-src packages
 1.3.3:
 	- Fix ternary operator in twig markup and html markup in PHP section
+1.3.4:
+	- Fix 'No HTML was found' error when a folder is empty

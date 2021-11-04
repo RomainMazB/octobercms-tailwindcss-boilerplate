@@ -21,18 +21,12 @@ function htmlParser(rootDir, to,  ext, done = addHTMLWebpackObject, dir = rootDi
     return new Promise((resolve, reject) => {
         fs.readdir(dir, function (err, list) {
             if (err) {
-                if (!results.length) {
-                    throw new Error("\r\n========\r\nTailwindCSS Boilerplate\r\nCan't found "+ rootDir +" directory.\r\n========")
-                }
                 reject(err);
             }
 
             let pending = list.length;
 
             if (!pending) {
-                if (!results.length) {
-                    throw new Error("\r\n========\r\nTailwindCSS Boilerplate\r\nNo HTML was found in your theme-src directory.\r\n========")
-                }
                 return done(null, results, to);
             }
 
@@ -84,6 +78,10 @@ function htmlParser(rootDir, to,  ext, done = addHTMLWebpackObject, dir = rootDi
  */
 function addHTMLWebpackObject(err, data = null, to = null)
 {
+    if (!data.length) {
+        throw new Error("\r\n========\r\nTailwindCSS Boilerplate\r\nNo HTML was found in your theme-src directory.\r\n========")
+    }
+
     let results = [];
     return new Promise((resolve, reject) => {
         if (err) {
